@@ -1,6 +1,5 @@
 
 # MRI_Vocal_Tract_Models
-<<<<<<< HEAD
 
 To evaluate zero echo time (ZTE) MRI as a radiation-free method for imaging dental and mandibular structures relevant to vocal tract modeling, and to assess the geometric and acoustic consequences of incorporating ZTE-derived teeth into MRI-based vocal tract models.
 
@@ -61,6 +60,5 @@ Python
 ### Suggested Python Packages
 
 numpy, pandas, matplotlib, pillow, pynrrd, scipy, scikit-image
-=======
-To evaluate zero echo time (ZTE) MRI as a radiation-free method for imaging dental and mandibular structures relevant to vocal tract modeling, and to assess the geometric and acoustic consequences of incorporating ZTE derived teeth into MRI-based vocal tract models.
->>>>>>> 7d0bee7169e7713f8bccf17ba346bb707de6f9d0
+
+
