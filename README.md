@@ -26,7 +26,7 @@ MRI_Vocal_Tract_Models/
 
 ### 1. ZTE Post Processing
 
-Run `zte_post_processing_final.m` for enhanced visualization of dental structures.
+Run `zte_post_processing_final.m` for enhanced visualization of dental structures. The code applies an iterative histogram-based log-domain bias correction and normalization procedure based on (Wiesinger F et al 2019).
 
 ### 2. Registration and Upsampling
 
@@ -38,17 +38,28 @@ The volumes are upsampled to match CT dimensions and pixel spacing.
 
 The vocal tract is segmented from registered and upsampled GRE-MRI. Teeth are respectively segmented from post-processed, registered, and upsampled ZTE-MRI and CT.
 
+<p align="left">
+  <img src="image-3.png" width="600">
+</p>
+
 ### 4. Create Hybrid Models
 
 Teeth from CT and ZTE-MRI are aligned to GRE-MRI using 3D Slicer's transform module to create hybrid vocal tract models.
+<p align="center">
+  <img src="image-1.png" width="48%">
+  <img src="image-2.png" width="48%">
+</p>
 
 ### 5. Vocal Tract Area Function (VAF) Calculation
 
 Use `VAF_Final.ipynb` to compute cross-sectional area along the vocal tract. For each model, a fixed 40-point airway centerline was defined along the midsagittal plane, extending from just superior to the glottis (L0) to the lips (L1). At each centerline location, an oblique cross-sectional plane orthogonal to the local airway direction was computed, and the enclosed cross-sectional area in the yz plane was measured.
+<p align="left">
+  <img src="image-4.png" width="400">
+</p>
 
 ### 6. Acoustic Analysis
 
-Run `acoustic_analysis_final.m` to analyze the acoustic consequences of incorporating ZTE-derived teeth and CT-derived teeth into the vocal tract model.
+Run `acoustic_analysis_final.m` to analyze the acoustic consequences of incorporating ZTE-derived teeth and CT-derived teeth into the vocal tract model. These calculations were performed in the frequency domain with a lossy transmission line model based on (Sondhi and Schroeter, 1987) but specifically as described in Story et al. (2000) and Story and Bunton (2017).
 
 ## Requirements
 
@@ -61,4 +72,12 @@ Python
 
 numpy, pandas, matplotlib, pillow, pynrrd, scipy, scikit-image
 
+## References
+1. Wiesinger F, Sacolick LI, Menini A, Kaushik SS, Ahn S, Veit-Haibach P, Delso G, Shanbhag DD. Zero TE MR bone imaging in the head. Magn Reson Med. 2016 Jan;75(1):107-14. Lu A, Gorny KR, Ho ML. Zero TE MRI for Craniofacial Bone Imaging. AJNR Am J Neuroradiol. 2019 Sep;40(9):1562-1566.
+
+2. Sondhi, M.M., Schroeter, J., 1987. A hybrid time-frequency domain articulatory speech synthesizer. IEEE Trans. ASSP ASSP-35 (7), 955–967. doi: 10.1109/tassp. 1987.1165240 .
+
+3. Story, B.H., Laukkanen, A-M., and Titze, I.R., (2000). Acoustic impedance of an artificially lengthened and constricted vocal tract, J. Voice, 14(4), 455-469. 
+
+4. Story, B. H., & Bunton, K. (2017). An acoustically-driven vocal tract model for stop consonant production. Speech communication, 87, 1-17. DOI: 10.1016/j.specom.2016.12.001. 
 
