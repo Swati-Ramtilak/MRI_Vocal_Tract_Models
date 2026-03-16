@@ -28,34 +28,59 @@ MRI_Vocal_Tract_Models/
 
 Run `zte_post_processing_final.m` for enhanced visualization of dental structures. The code applies an iterative histogram-based log-domain bias correction and normalization procedure based on (Wiesinger F et al 2019).
 
+<table>
+<tr>
+<td align="center"><b>Input</b></td>
+<td align="center"><b>Output expected</b></td>
+</tr>
+<tr>
+<td><img src="image.png" width="150"></td>
+<td><img src="image-5.png" width="150"></td>
+</tr>
+</table>
+
 ### 2. Registration and Upsampling
 
-3D Slicer is used to register post-processed ZTE-MRI and GRE-MRI to their CT counterparts. Landmarks included: the tip of the epiglottis, the posterior boundary of the nasal concha, the inferior border of the mandibular body, the anterior maxillary dentition, the body of the hyoid bone, the anterior tubercle of the atlas (C1 vertebra), the inferior medial border of the axis body (C2 vertebra), and the intersection of the external occipital crest with the foramen magnum.  
+The post-processed ZTE-MRI and GRE-MRI are registered to their CT counterparts. Landmarks included: the tip of the epiglottis, the posterior boundary of the nasal concha, the inferior border of the mandibular body, the anterior maxillary dentition, the body of the hyoid bone, the anterior tubercle of the atlas (C1 vertebra), the inferior medial border of the axis body (C2 vertebra), and the intersection of the external occipital crest with the foramen magnum.  
 
-The volumes are upsampled to match CT dimensions and pixel spacing.
+The volumes are upsampled to match CT dimensions and pixel spacing.This step is completed manually in 3D Slicer.
 
 ### 3. Segmentation
 
-The vocal tract is segmented from registered and upsampled GRE-MRI. Teeth are respectively segmented from post-processed, registered, and upsampled ZTE-MRI and CT.
+The vocal tract is segmented from registered and upsampled GRE-MRI. Teeth are respectively segmented from post-processed, registered, and upsampled ZTE-MRI and CT. This step is completed manually in 3D Slicer.
 
 <p align="left">
-  <img src="image-3.png" width="600">
+  <img src="image-3.png" width="400">
 </p>
 
 ### 4. Create Hybrid Models
 
-Teeth from CT and ZTE-MRI are aligned to GRE-MRI using 3D Slicer's transform module to create hybrid vocal tract models.
-<p align="center">
-  <img src="image-1.png" width="48%">
-  <img src="image-2.png" width="48%">
-</p>
+Teeth from CT and ZTE-MRI are aligned to GRE-MRI using 3D Slicer's transform module to create hybrid vocal tract models.This step is completed manually in 3D Slicer.
+<table>
+<tr>
+<td align="center"><b>GRE-ZTE Hybrid Model</b></td>
+<td align="center"><b>GRE-CT Hybrid Model</b></td>
+</tr>
+<tr>
+<td><img src="image-1.png" width="300"></td>
+<td><img src="image-2.png" width="300"></td>
+</tr>
+</table>
 
 ### 5. Vocal Tract Area Function (VAF) Calculation
 
 Use `VAF_Final.ipynb` to compute cross-sectional area along the vocal tract. For each model, a fixed 40-point airway centerline was defined along the midsagittal plane, extending from just superior to the glottis (L0) to the lips (L1). At each centerline location, an oblique cross-sectional plane orthogonal to the local airway direction was computed, and the enclosed cross-sectional area in the yz plane was measured.
-<p align="left">
-  <img src="image-4.png" width="400">
-</p>
+
+<table>
+<tr>
+<td align="center"><b>VAF Calculation</b></td>
+<td align="center"><b>VAF Comparison</b></td>
+</tr>
+<tr>
+<td><img src="image-4.png" width="200"></td>
+<td><img src="image-6.png" width="300"></td>
+</tr>
+</table>
 
 ### 6. Acoustic Analysis
 
@@ -73,11 +98,13 @@ Python
 numpy, pandas, matplotlib, pillow, pynrrd, scipy, scikit-image
 
 ## References
-1. Wiesinger F, Sacolick LI, Menini A, Kaushik SS, Ahn S, Veit-Haibach P, Delso G, Shanbhag DD. Zero TE MR bone imaging in the head. Magn Reson Med. 2016 Jan;75(1):107-14. Lu A, Gorny KR, Ho ML. Zero TE MRI for Craniofacial Bone Imaging. AJNR Am J Neuroradiol. 2019 Sep;40(9):1562-1566.
+1. S.Ramtilak, A. Lu, J. Holmes, J. Atha, E. Hoffman, B. Story, S.Vigmostad, D.Meyer, S.G.Lingala, "Incorporating Dental Anatomy into MRI based vocal tract models using ZTE-MRI", Journal of Voice (in-review).
 
-2. Sondhi, M.M., Schroeter, J., 1987. A hybrid time-frequency domain articulatory speech synthesizer. IEEE Trans. ASSP ASSP-35 (7), 955–967. doi: 10.1109/tassp. 1987.1165240 .
+2. Wiesinger F, Sacolick LI, Menini A, Kaushik SS, Ahn S, Veit-Haibach P, Delso G, Shanbhag DD. Zero TE MR bone imaging in the head. Magn Reson Med. 2016 Jan;75(1):107-14. Lu A, Gorny KR, Ho ML. Zero TE MRI for Craniofacial Bone Imaging. AJNR Am J Neuroradiol. 2019 Sep;40(9):1562-1566.
 
-3. Story, B.H., Laukkanen, A-M., and Titze, I.R., (2000). Acoustic impedance of an artificially lengthened and constricted vocal tract, J. Voice, 14(4), 455-469. 
+3. Sondhi, M.M., Schroeter, J., 1987. A hybrid time-frequency domain articulatory speech synthesizer. IEEE Trans. ASSP ASSP-35 (7), 955–967. doi: 10.1109/tassp. 1987.1165240 .
 
-4. Story, B. H., & Bunton, K. (2017). An acoustically-driven vocal tract model for stop consonant production. Speech communication, 87, 1-17. DOI: 10.1016/j.specom.2016.12.001. 
+4. Story, B.H., Laukkanen, A-M., and Titze, I.R., (2000). Acoustic impedance of an artificially lengthened and constricted vocal tract, J. Voice, 14(4), 455-469. 
+
+5. Story, B. H., & Bunton, K. (2017). An acoustically-driven vocal tract model for stop consonant production. Speech communication, 87, 1-17. DOI: 10.1016/j.specom.2016.12.001. 
 
