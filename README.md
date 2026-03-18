@@ -86,6 +86,17 @@ Use `VAF_Final.ipynb` to compute cross-sectional area along the vocal tract. For
 
 Run `acoustic_analysis_final.m` to analyze the acoustic consequences of incorporating ZTE-derived teeth and CT-derived teeth into the vocal tract model. These calculations were performed in the frequency domain with a lossy transmission line model based on (Sondhi and Schroeter, 1987) but specifically as described in Story et al. (2000) and Story and Bunton (2017).
 
+<table>
+<tr>
+<td align="center"><b>GRE-MRI vs GRE-MRI + ZTE Teeth</b></td>
+<td align="center"><b>GRE-MRI vs GRE-MRI + CT Teeth</b></td>
+</tr>
+<tr>
+<td><img src="image-7.png" width="200"></td>
+<td><img src="image-8.png" width="200"></td>
+</tr>
+</table>
+
 ## Requirements
 
 ### Software
